@@ -1,5 +1,5 @@
 #!/bin/bash
-
+hasan yildirim  brsk
 # Komutun çıktısını bir değişkene atıyoruz
 hash_output=$(tor --hash-password 123456)
 
