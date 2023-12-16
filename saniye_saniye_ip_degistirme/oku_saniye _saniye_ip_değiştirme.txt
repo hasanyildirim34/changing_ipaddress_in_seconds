@@ -1,0 +1,46 @@
+1) vpn bağlantısı  kur
+2) toriptables2 indiriyoruz terminale bunu yazıyoruz >> git clone https://github.com/ruped24/toriptables2
+3) ip switcher indiriyoruz  terminale bunu yazıyoruz >> git clone  https://github.com/ruped24/tor_ip_switcher
+4) pluma /etc/tor/torrc
+5) iki tane işlemin önündeki kareleri kaldırıp aktif hale getiriyoruz ve ilerde ip switcher girişi  için  bize soracak password belirlicez.
+      ControlPort 9051 
+      HashedControlPassword 16:3FB98................ vs......................
+kareleri kaldırdıktan sonra bunu kapatmadan yeni terminal açıp aşağıdaki komutu giriyoruz
+6)  tor --hash-password 123456    
+    (123456 temsili parolamız bunu yazıp enterlediğimz zaman 16:E9A ..............vs 
+    
+   birşey çıkacak)
+   16 ile başlayan alıp pluma ile açtığımız "/etc/tor/torrc" dosyasındaki 16..... ile başlayan yer ile değiştiriyoruz ve kayıt edip dosyyı kapatıyoruz.
+
+not:hala vpn miz aktif halde kalsın.
+
+7) apt-get install tor (türkiyede tor engellendiği için)
+
+8) service tor start 
+9) service tor status (azdığımız zaman kontrol ediyoruz tor servisis gerçekten başlatıldı mı ve "active" yazacak.)
+
+
+
+10) toriptables2 klasörüne gelip terminalde    ./toriptables2.py -l          başlatıyoruz.
+
+11) cd tor_ip_switcher/  klasörüne girip aşağıdaki kodu terminalde açıyoruz.
+
+    sudo cp -var tor_ip_switcher.py /usr/local/bin/   giriyoruz.
+    
+    çıktımız bu şekilde olacak 
+    
+    'tor_ip_switcher.py' -> '/usr/local/bin/tor_ip_switcher.py'
+
+    
+12) tor_ip_switcher.py çalıştırıyoruz.
+password girip 05 saniye kayıt edip test ediyoruz bitti.
+
+
+******************************************
+
+eski haline döndürmek için 
+1)  ./toriptables2.py -f       ile kapatıyoruz .
+2)  service tor stop 
+3)  sudo killall openvpn (terminalden açtığımız vpn yi kapatmak için  )
+  
+

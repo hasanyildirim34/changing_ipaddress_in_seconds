@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Aramak istediğiniz dosyanın adını buraya girin
+dosya="tor_hash.txt"
+
+# Dosyayı satır satır okuyarak "16 " ile başlayan satırı buluyoruz
+while IFS= read -r line; do
+  if [[ "$line" == 16* ]]; then
+    echo "16 ile başlayan satır: $line"
+    # Etkilenen satırı "torrc" dosyasında değiştiriyoruz (sudo ile)
+    echo "$line" | sudo tee /etc/tor/torrc > /dev/null
+    echo "Değiştirme işlemi tamamlandı."
+    exit 0
+  fi
+done < "$dosya"
+
+echo "16 ile başlayan satır bulunamadı."
+exit 1

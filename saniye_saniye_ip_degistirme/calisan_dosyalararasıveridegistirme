@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+
+
+
+# Aramak istediğiniz dosyanın adını buraya girin
+dosya="tor_hash.txt"
+
+# Dosyayı satır satır okuyarak "16 " ile başlayan satırı buluyoruz
+while IFS= read -r line; do
+  if [[ "$line" == 16* ]]; then
+    echo "16 ile başlayan satır: $line"
+    # B dosyasındaki "16 ile başlayan satır" yerine bulduğumuz satırı yazıyoruz
+    sed -i "s/^16.*$/$line/" /home/sah/Desktop/t.txt
+    echo "Değiştirme işlemi tamamlandı."
+    exit 0
+  fi
+done < "$dosya"
+
+echo "16 ile başlayan satır bulunamadı."
+exit 1
+
